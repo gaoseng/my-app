@@ -1,25 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { useSelector, useDispatch } from 'react-redux';
+import Home from './Home';
+
 
 function App() {
-  console.log('test1')
+  const state = useSelector(state => state);
+  const dispatch = useDispatch();
+  
+  
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+        {/* <img src={logo} className="App-logo" alt="logo" /> */}
+        <p onClick={() => dispatch({type: 'ADD'})}>
+          {state.testReducer}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div>
+          // test
+          <div>
+            {state.userKey}
+          </div>
+          <button onClick={() => dispatch({type: 'SET', value: 'gaosen'})}> set key</button>
+          <button onClick={() => dispatch({type: 'CLEAR', value: null})}> clear</button>
+        </div>
       </header>
+      <Home />
     </div>
   );
 }
